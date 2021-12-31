@@ -92,7 +92,10 @@ class MichaReader:
 
         #get the topology file info 
         with open(top) as f:
-            nbases, nstrands = f.readline().split(' ')
+            if len(f.readline().split(' '))  == 2:
+                nbases, nstrands = f.readline().split(' ')
+            elif len(f.readline().split(' '))  == 2:
+                nbases, nstrands, ndna, ndnastrands = f.readline().split(' ')
             self.top_info = TopInfo(int(nbases), int(nstrands))
         
         #open trajectory file
